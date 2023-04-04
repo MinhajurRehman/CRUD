@@ -10,7 +10,11 @@ class Admin extends Controller
 {
     public function index()
     {
-        return view('Admin.Form');
+        $employee_details = new employee;
+        $url = url('/Form');
+        $title = "Employee Registration";
+        $data = compact('url', 'title', 'employee_details');
+        return view('Admin.Form')->with($data);
     }
 
     public function store(Request $request)
@@ -47,17 +51,18 @@ class Admin extends Controller
         $employee_details = employee::find($id);
         if (is_null($employee_details)) {
             //not found
-            return redirect('/view');
+            return redirect('employee_details');
         } else {
             //found
-            $data = compact('employee_details');
+            $title = "Update Employee Details";
+            $url = url('/employee/update') . "/" . $id;
+            $data = compact('employee_details', 'url', 'title');
             return view('Admin.Form')->with($data);
         }
     }
 
     public function update($id, Request $request)
     {
-        //    Insert Query
         $employee_details = employee::find($id);
         $employee_details->fname = $request['fname'];
         $employee_details->lname = $request['lname'];

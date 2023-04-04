@@ -22,5 +22,5 @@ Route::get('/Form', [Admin::class, 'index']);
 Route::get('/view', [Admin::class, 'view'])->name('employee.create');
 Route::get('/employee/del/{id}', [Admin::class, 'delete'])->name('employee.delete');
 Route::get('/employee/edit/{id}', [Admin::class, 'edit'])->name('employee.edit');
-Route::POST('/employee/updates/{id}', [Admin::class, 'update'])->name('employee.update');
+Route::POST('/employee/update/{id}', [Admin::class, 'update'])->name('employee.update');
 Route::POST('/Form', [Admin::class, 'store']);
