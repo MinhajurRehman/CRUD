@@ -12,7 +12,7 @@ class Admin extends Controller
     {
         $employee_details = new employee;
         $url = url('/Form');
-        $title = "Employee Registration";
+        $title = "Register Employee Details";
         $data = compact('url', 'title', 'employee_details');
         return view('Admin.Form')->with($data);
     }

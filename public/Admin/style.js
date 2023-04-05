@@ -1,75 +1,69 @@
-// function validate(val) {
-//     v1 = document.getElementById("fname");
-//     v2 = document.getElementById("lname");
-//     v3 = document.getElementById("email");
-//     v4 = document.getElementById("mob");
-//     v5 = document.getElementById("job");
-//     v6 = document.getElementById("ans");
 
-//     flag1 = true;
-//     flag2 = true;
-//     flag3 = true;
-//     flag4 = true;
-//     flag5 = true;
-//     flag6 = true;
+var currentTab = 0;
+              document.addEventListener("DOMContentLoaded", function(event) {
 
-//     if (val >= 1 || val == 0) {
-//         if (v1.value == "") {
-//             v1.style.borderColor = "red";
-//             flag1 = false;
-//         } else {
-//             v1.style.borderColor = "green";
-//             flag1 = true;
-//         }
-//     }
 
-//     if (val >= 2 || val == 0) {
-//         if (v2.value == "") {
-//             v2.style.borderColor = "red";
-//             flag2 = false;
-//         } else {
-//             v2.style.borderColor = "green";
-//             flag2 = true;
-//         }
-//     }
-//     if (val >= 3 || val == 0) {
-//         if (v3.value == "") {
-//             v3.style.borderColor = "red";
-//             flag3 = false;
-//         } else {
-//             v3.style.borderColor = "green";
-//             flag3 = true;
-//         }
-//     }
-//     if (val >= 4 || val == 0) {
-//         if (v4.value == "") {
-//             v4.style.borderColor = "red";
-//             flag4 = false;
-//         } else {
-//             v4.style.borderColor = "green";
-//             flag4 = true;
-//         }
-//     }
-//     if (val >= 5 || val == 0) {
-//         if (v5.value == "") {
-//             v5.style.borderColor = "red";
-//             flag5 = false;
-//         } else {
-//             v5.style.borderColor = "green";
-//             flag5 = true;
-//         }
-//     }
-//     if (val >= 6 || val == 0) {
-//         if (v6.value == "") {
-//             v6.style.borderColor = "red";
-//             flag6 = false;
-//         } else {
-//             v6.style.borderColor = "green";
-//             flag6 = true;
-//         }
-//     }
+              showTab(currentTab);
 
-//     flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+              });
 
-//     return flag;
-// }
+              function showTab(n) {
+              var x = document.getElementsByClassName("tab");
+              x[n].style.display = "block";
+              if (n == 0) {
+              document.getElementById("prevBtn").style.display = "none";
+              } else {
+              document.getElementById("prevBtn").style.display = "inline";
+              }
+              if (n == (x.length - 1)) {
+              document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>';
+              } else {
+              document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>';
+              }
+              fixStepIndicator(n)
+              }
+
+              function nextPrev(n) {
+              var x = document.getElementsByClassName("tab");
+              if (n == 1 && !validateForm()) return false;
+              x[currentTab].style.display = "none";
+              currentTab = currentTab + n;
+              if (currentTab >= x.length) {
+
+              document.getElementById("nextprevious").style.display = "none";
+              document.getElementById("all-steps").style.display = "none";
+              document.getElementById("register").style.display = "none";
+              document.getElementById("text-message").style.display = "block";
+
+
+
+
+              }
+              showTab(currentTab);
+              }
+
+              function validateForm() {
+                   var x, y, i, valid = true;
+                   x = document.getElementsByClassName("tab");
+                   y = x[currentTab].getElementsByTagName("input");
+                   for (i = 0; i < y.length; i++) {
+                       if (y[i].value == "") {
+                           y[i].className += " invalid";
+                           valid = false;
+                       }
+
+
+                   }
+                   if (valid) {
+                       document.getElementsByClassName("step")[currentTab].className += " finish";
+                   }
+                   return valid;
+               }
+
+               function fixStepIndicator(n) {
+                   var i, x = document.getElementsByClassName("step");
+                   for (i = 0; i < x.length; i++) {
+                       x[i].className = x[i].className.replace(" active", "");
+                   }
+                   x[n].className += " active";
+               }

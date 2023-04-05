@@ -21,7 +21,7 @@
 <body>
     <div class="container">
         <a href="{{ url('/Form') }}">
-            <button class="btn btn-primary d-inline-block m-2">
+            <button class="btn btn-success d-inline-block m-2">
                 Add
             </button>
         </a>
@@ -48,7 +48,7 @@
                         <a href="{{ route('employee.delete', ['id' => $emoloyee->id]) }}"><button
                                 class="btn btn-danger">Delete</button></a>
                         <a href="{{ route('employee.edit', ['id' => $emoloyee->id]) }}"><button
-                                class="btn btn-primary">Edit</button></a>
+                                class="btn btn-secondary">Edit</button></a>
                     </td>
                 </tr>
             @endforeach

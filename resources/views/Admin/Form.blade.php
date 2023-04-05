@@ -3,10 +3,10 @@
 <head>
     <title></title>
     {{-- stylesheet CDN's --}}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     {{-- Stylesheet --}}
     <link rel="stylesheet" href="{{ url('Admin/style.css') }}" />
 
@@ -14,63 +14,81 @@
 </head>
 
 <body>
-    <div class="container-fluid px-1 py-5 mx-auto">
-        <div class="row d-flex justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                <h3>CRUD Operations</h3>
-                <div class="card">
-                    <h5 class="text-center mb-4">{{ $title }}</h5>
-                    <form action="{{ $url }}" method="POST" class="form-card">
-                        @csrf
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">First name<span class="text-danger">
-                                        *</span></label> <input type="text" name="fname"
-                                    placeholder="Enter your first name" value=" {{ $employee_details->fname }} " />
-                            </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Last name<span class="text-danger"> *</span></label>
-                                <input type="text" name="lname" placeholder="Enter your last name"
-                                    value="{{ $employee_details->lname }}" />
-                            </div>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form action="{{ $url }}" method="POST" id="regForm">
+                    @csrf
+                    <h1 id="register">{{ $title }}</h1>
+                    <div class="all-steps" id="all-steps">
+                        <span class="step"><i class="fa fa-user"></i></span>
+                        <span class="step"><i class="fa fa-map-marker"></i></span>
+                        <span class="step"><i class="fa fa-shopping-bag"></i></span>
+                        <span class="step"><i class="fa fa-car"></i></span>
+                        <span class="step"><i class="fa fa-spotify"></i></span>
+                        <span class="step"><i class="fa fa-mobile-phone"></i></span>
+                    </div>
+
+                    <div class="tab">
+                        <h6>What's your first name?</h6>
+                        <p>
+                            <input placeholder="First Name..." oninput="this.className = ''" name="fname">
+                        </p>
+
+                    </div>
+                    <div class="tab">
+                        <h6>What's your last name?</h6>
+                        <p>
+                            <input placeholder="Last Name..." oninput="this.className = ''" name="lname"
+                                value=" {{ $employee_details->lname }}" />
+                        </p>
+
+                    </div>
+                    <div class="tab">
+                        <h6>What's your email?</h6>
+                        <p><input placeholder="Email" oninput="this.className = ''" name="email"
+                                value="{{ $employee_details->email }}" /></p>
+
+                    </div>
+                    <div class="tab">
+                        <h6>What's your Mobile Number?</h6>
+                        <p><input placeholder="Enter Mobile Number" oninput="this.className = ''" name="mob"
+                                value="{{ $employee_details->mob }}" /></p>
+
+                    </div>
+                    <div class="tab">
+                        <h6>What's your Job Post?</h6>
+                        <p><input placeholder="Enter Job Post" oninput="this.className = ''" name="job"
+                                value="{{ $employee_details->job }}"></p>
+                    </div>
+
+                    <div class="tab">
+                        <h6>Are You freshy or Experience Developer ?</h6>
+                        <p><input placeholder="Answer...." oninput="this.className = ''" name="ans"
+                                value="{{ $employee_details->ans }}" /></p>
+                    </div>
+
+
+                    <div class="thanks-message text-center" id="text-message"> <img src="{{ url('Images/tic.png') }}"
+                            width="100" class="mb-4">
+                        <button type="submit" class="btn-block btn-success">{{ $title }}</button>
+                    </div>
+                    <div style="overflow:auto;" id="nextprevious" class="n-p">
+                        <div style="float:right;">
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i
+                                    class="fa fa-angle-double-left"></i></button>
+                            <button type="button" id="nextBtn" onclick="nextPrev(1)"><i
+                                    class="fa fa-angle-double-right"></i></button>
                         </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Business email<span class="text-danger">
-                                        *</span></label> <input type="text" name="email"
-                                    placeholder="ex: example@gmail.com" value="{{ $employee_details->email }}" /> </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Phone number<span class="text-danger">
-                                        *</span></label> <input type="text" name="mob" placeholder="ex: +92"
-                                    value="{{ $employee_details->mob }}" />
-                            </div>
-                        </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Job title<span class="text-danger"> *</span></label>
-                                <input type="text" name="job" placeholder="ex: Full Stack Developer"
-                                    value="{{ $employee_details->job }}" />
-                            </div>
-                        </div>
-                        <div class="row justify-content-between text-left">
-                            <div class="form-group col-12 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Salary Base OR Internship?<span class="text-danger">
-                                        *</span></label>
-                                <input type="text" name="ans" placeholder="ex: Internship"
-                                    value="{{ $employee_details->ans }}" />
-                            </div>
-                        </div>
-                        <div class="row justify-content-end">
-                            <div class="form-group col-sm-6"> <button type="submit"
-                                    class="btn-block btn-primary">Save</button> </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
 
+    {{-- Js --}}
+    <script src="{{ url('Admin/style.js') }}"></script>
 
 </body>
 
