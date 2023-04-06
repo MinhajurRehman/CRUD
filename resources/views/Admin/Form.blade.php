@@ -17,8 +17,11 @@
     <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-8">
+                {{-- action perform that using function in Admin Controller --}}
                 <form action="{{ $url }}" method="POST" id="regForm">
+                    {{-- crsf token that generate token For Strong Data Security --}}
                     @csrf
+                    {{-- Title can manage time to time like update And Store --}}
                     <h1 id="register">{{ $title }}</h1>
                     <div class="all-steps" id="all-steps">
                         <span class="step"><i class="fa fa-user"></i></span>

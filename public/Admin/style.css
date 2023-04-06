@@ -8,11 +8,12 @@ body {
     font-family: Raleway;
     padding: 40px;
     border-radius: 10px;
+    margin-top: 50px;
 }
 
 #register{
 
-  color: #6A1B9A;
+  color: green;
 }
 
 h1 {
@@ -32,7 +33,7 @@ input {
 
 .tab input:focus{
 
-  border:1px solid #6a1b9a !important;
+  border:1px solid green !important;
   outline: none;
 }
 
@@ -46,7 +47,7 @@ input.invalid {
 }
 
 .n-p button {
-    background-color: #6A1B9A;
+    background-color: green;
     color: #ffffff;
     border: none;
     border-radius: 50%;
@@ -90,7 +91,7 @@ button:focus{
     justify-content: center;
     align-items: center;
     font-size: 15px;
-    color: #6a1b9a;
+    color: green;
     opacity: 0.5;
 }
 
@@ -101,7 +102,7 @@ button:focus{
 
 .step.finish {
    color: #fff;
-   background: #6a1b9a;
+   background: green;
    opacity: 1;
 
 }
