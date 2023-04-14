@@ -21,6 +21,18 @@ class Admin extends Controller
     //Function perform store data in database
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'fname' => 'required',
+                'lname' => 'required',
+                'email' => 'required|email',
+                'mob' => 'required',
+                'job' => 'required',
+                'ans' => 'required'
+
+            ]
+        );
+
         //    Insert Query
         $employee_details = new employee;   // variable define
         $employee_details->fname = $request['fname']; //using that name which you pass on form name

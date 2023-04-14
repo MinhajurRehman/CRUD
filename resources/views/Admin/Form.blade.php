@@ -35,7 +35,13 @@
                     <div class="tab">
                         <h6>What's your first name?</h6>
                         <p>
-                            <input placeholder="First Name..." oninput="this.className = ''" name="fname">
+                            <input placeholder="First Name..." oninput="this.className = ''" name="fname"
+                                value=" {{ $employee_details->fname }}" />
+                            <span class="text-danger">
+                                @error('fname')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </p>
 
                     </div>
@@ -44,31 +50,60 @@
                         <p>
                             <input placeholder="Last Name..." oninput="this.className = ''" name="lname"
                                 value=" {{ $employee_details->lname }}" />
+                            <span class="text-danger">
+                                @error('lname')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </p>
 
                     </div>
                     <div class="tab">
                         <h6>What's your email?</h6>
                         <p><input placeholder="Email" oninput="this.className = ''" name="email"
-                                value="{{ $employee_details->email }}" /></p>
+                                value="{{ $employee_details->email }}" />
+                            <span class="text-danger">
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </p>
 
                     </div>
                     <div class="tab">
                         <h6>What's your Mobile Number?</h6>
                         <p><input placeholder="Enter Mobile Number" oninput="this.className = ''" name="mob"
-                                value="{{ $employee_details->mob }}" /></p>
+                                value="{{ $employee_details->mob }}" />
+                            <span class="text-danger">
+                                @error('mob')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </p>
 
                     </div>
                     <div class="tab">
                         <h6>What's your Job Post?</h6>
                         <p><input placeholder="Enter Job Post" oninput="this.className = ''" name="job"
-                                value="{{ $employee_details->job }}"></p>
+                                value="{{ $employee_details->job }}">
+                            <span class="text-danger">
+                                @error('job')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </p>
                     </div>
 
                     <div class="tab">
                         <h6>Are You freshy or Experience Developer ?</h6>
                         <p><input placeholder="Answer...." oninput="this.className = ''" name="ans"
-                                value="{{ $employee_details->ans }}" /></p>
+                                value="{{ $employee_details->ans }}" />
+                            <span class="text-danger">
+                                @error('ans')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </p>
                     </div>
 
 
