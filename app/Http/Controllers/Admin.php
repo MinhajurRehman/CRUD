@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\employee;
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 
 class Admin extends Controller
@@ -41,7 +43,60 @@ class Admin extends Controller
         $employee_details->mob = $request['mob'];     //using that name which you pass on form name
         $employee_details->job = $request['job'];     //using that name which you pass on form name
         $employee_details->ans = $request['ans'];     //using that name which you pass on form name
-        $employee_details->save();          //save data in database After that called
+        $employee_details->save(); //save data in database After that called
+
+        $fname = $request->fname;
+        $lname = $request->lname;
+        $email = $request->email;
+        $mob = $request->mob;
+        $job = $request->job;
+        $ans = $request->ans;
+
+        // SMTP protocol mail sending
+        $mail = new PHPMailer(true);
+        // $mail->SMTPDebug = 2;
+        $mail->isSMTP();
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->Mailer = "smtp";
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = "albert.08774573829920@gmail.com";
+        $mail->Password = "qnqxqmckwsvdjfgg";
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->setFrom($email, "Z-Club");
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->SMTPSecure = 'tls';
+        $mail->Subject  = "Your Form Details";
+        $mail->Body   = "$fname , $lname , $email , $mob , $job , $ans";
+        $dt = $mail->send();
+        if ($dt) {
+            // echo 'Email has been send successfully sent to user';
+        } else {
+            echo 'something went wrong';
+        }
+        $mail->setFrom($email, "Z-Club");
+        $mail->addAddress("albert.08774573829920@gmail.com");
+        $mail->isHTML(true);
+        $mail->SMTPSecure = 'tls';
+        $mail->Subject  = "Your Form Details";
+        $mail->Body   = "$fname , $lname , $email , $mob , $job , $ans";
+        $dt = $mail->send();
+        if ($dt) {
+            // echo 'Email has been send successfully to z-club';
+        } else {
+            echo 'something went wrong';
+        }
+        return redirect('/view');
+
+
         //redirect View page
         return redirect('/view');
     }
