@@ -75,22 +75,21 @@ class Admin extends Controller
         $mail->isHTML(true);
         $mail->SMTPSecure = 'tls';
         $mail->Subject  = "Your Form Details";
-        $mail->Body   = "$fname , $lname , $email , $mob , $job , $ans";
+        $mail->Body   = "First Name: $fname <br> ,Last Name: $lname <br> , Email: $email <br> , Mobile Number: $mob <br> , Job Post: $job <br> , Answer: $ans";
         $dt = $mail->send();
         if ($dt) {
             // echo 'Email has been send successfully sent to user';
         } else {
             echo 'something went wrong';
         }
-        $mail->setFrom($email, "Z-Club");
+        $mail->setFrom($email, "Albert");
         $mail->addAddress("albert.08774573829920@gmail.com");
         $mail->isHTML(true);
         $mail->SMTPSecure = 'tls';
         $mail->Subject  = "Your Form Details";
-        $mail->Body   = "$fname , $lname , $email , $mob , $job , $ans";
+        $mail->Body   = "First Name: $fname <br> ,Last Name: $lname <br> , Email: $email <br> , Mobile Number: $mob <br> , Job Post: $job <br> , Answer: $ans";
         $dt = $mail->send();
         if ($dt) {
-            // echo 'Email has been send successfully to z-club';
         } else {
             echo 'something went wrong';
         }
